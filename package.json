@@ -21,7 +21,8 @@
   "dependencies": {
     "co": "^4.6.0",
     "deep-equal": "^1.0.1",
-    "sg-kinect-constants": "^1.0.3"
+    "sg-kinect-constants": "^1.0.3",
+    "sg-socket-client": "^1.0.0"
   },
   "devDependencies": {
     "ape-covering": "^3.0.1",
