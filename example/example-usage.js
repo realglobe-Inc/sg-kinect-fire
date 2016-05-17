@@ -1,13 +1,20 @@
 'use strict'
 
-const sgKinectFire = require('sg-kinect-fire')
+const { KinectFire } = require('sg-kinect-fire')
+const { jointTypes } = require('sg-kinect-constants')
 
-let fire = sgKinectFire({
-  pose: {}
+let { HEAD, HAND_LEFT, SPINE_BASE } = jointTypes
+
+let fire = new KinectFire({
+  reducers: {
+    leftHandHigherThanHead: (frame) => (frame.joints[ HAND_LEFT ].cameraY > frame.joints[ HEAD ].cameraY),
+    spineBaseLowerThanHead: (frame) => (frame.joints[ SPINE_BASE ].cameraY < frame.joints[ HEAD ].cameraY)
+  }
 })
 
-fire.on('pose', (data) => {
-  let {pose} = data
+// Handle kinect reduced frame data
+fire.on('frame:detect', (detected) => {
+  console.log(detected)
 })
 
 // Handle kinect raw frame data

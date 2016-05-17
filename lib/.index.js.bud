@@ -10,7 +10,11 @@ const { description, name } = require('../package.json')
 module.exports = apeTmpl.indexJsBud({
   desc: description,
   module: name,
-  dirname: __dirname
+  dirname: __dirname,
+  subclasses:[
+    'KinectFire',
+    'KinectSocketFire'
+  ]
 })
 
 if (!module.parent) {

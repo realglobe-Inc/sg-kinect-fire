@@ -9,7 +9,7 @@
 process.chdir(`${__dirname}/..`)
 
 const apeTasking = require('ape-tasking')
-const coz = require('coz');
+const coz = require('coz')
 
 apeTasking.runTasks('build', [
   () => coz.render([

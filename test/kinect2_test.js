@@ -1,14 +1,14 @@
 /**
- * Test case for asSocket.
+ * Test case for kinect2.
  * Runs with mocha.
  */
 'use strict'
 
-const asSocket = require('../lib/as_socket.js')
+const kinect2 = require('../lib/kinect/kinect2.js')
 const assert = require('assert')
 const co = require('co')
 
-describe('as-socket', () => {
+describe('kinect2', () => {
   before(() => co(function * () {
 
   }))
@@ -17,7 +17,7 @@ describe('as-socket', () => {
 
   }))
 
-  it('As socket', () => co(function * () {
+  it('Kinect2', () => co(function * () {
 
   }))
 })

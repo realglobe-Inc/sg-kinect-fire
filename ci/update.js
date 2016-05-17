@@ -9,7 +9,7 @@
 process.chdir(`${__dirname}/..`)
 
 const apeTasking = require('ape-tasking')
-const apeUpdating = require('ape-updating');
+const apeUpdating = require('ape-updating')
 
 apeTasking.runTasks('update', [
   () => apeUpdating.updateDependencies({})

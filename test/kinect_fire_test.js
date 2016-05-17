@@ -34,22 +34,22 @@ describe('kinect-fire', () => {
     ])
 
     yield new Promise((resolve) => {
-      fire.on('detection', (detected) => {
+      fire.on('frame:detect', (detected) => {
         assert.ok(detected)
         assert.deepEqual(detected, [
           { leftHandHigherThanHead: false, spineBaseLowerThanHead: true }
         ])
         resolve()
       })
-      fire.handle(mockBodyFrame)
+      fire.handleFrame(mockBodyFrame)
     })
 
     yield new Promise((resolve) => {
-      fire.on('raw', (raw) => {
+      fire.on('frame:raw', (raw) => {
         assert.ok(raw)
         resolve()
       })
-      fire.handle(mockBodyFrame)
+      fire.handleFrame(mockBodyFrame)
     })
   }))
 })
