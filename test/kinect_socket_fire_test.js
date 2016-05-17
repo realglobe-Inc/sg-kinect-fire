@@ -6,10 +6,10 @@
 
 const KinectFire = require('../lib/kinect_fire')
 const KinectSocketFire = require('../lib/kinect_socket_fire')
-const sgSocket = require('sg-socket')
 const injectmock = require('injectmock')
 const assert = require('assert')
 const co = require('co')
+const sgSocket = require('sg-socket')
 const sgSocketClient = require('sg-socket-client')
 
 describe('kinect-socket-fire', () => {
@@ -18,7 +18,7 @@ describe('kinect-socket-fire', () => {
   before(() => co(function * () {
     const kinect2 = require('../doc/mocks/mock-kinect2')
     injectmock(KinectFire, 'kinect2', kinect2)
-    wsServer = sgSocket(9855)
+    wsServer = sgSocket(port)
     wsServer.on('connection', (socket) => {
       let pipe = (event) => {
         socket.on(event, (data) => {
