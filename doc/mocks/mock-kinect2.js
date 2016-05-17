@@ -16,7 +16,9 @@ function mockKinect2 () {
       setInterval(() => {
         let bodyFrameHandler = handlers[ 'bodyFrame' ]
         if (bodyFrameHandler) {
-          bodyFrameHandler({})
+          bodyFrameHandler({
+            bodies: require('./mock-body-frame')
+          })
         }
       }, 100).unref()
     }

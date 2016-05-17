@@ -41,7 +41,7 @@ describe('kinect-fire', () => {
         ])
         resolve()
       })
-      fire.handleFrame(mockBodyFrame)
+      fire.handleBody(mockBodyFrame)
     })
 
     yield new Promise((resolve) => {
@@ -49,7 +49,7 @@ describe('kinect-fire', () => {
         assert.ok(raw)
         resolve()
       })
-      fire.handleFrame(mockBodyFrame)
+      fire.handleBody(mockBodyFrame)
     })
   }))
 })
