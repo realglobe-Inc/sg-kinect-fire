@@ -1,6 +1,6 @@
 {
   "name": "sg-kinect-fire",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fire event from kinect",
   "main": "lib",
   "scripts": {
