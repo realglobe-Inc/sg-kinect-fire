@@ -10,7 +10,7 @@ const co = require('co')
 
 const { jointTypes } = require('sg-kinect-constants')
 
-const mockBodyFrame = require('../doc/mocks/mock-body-frame')
+const mockBodies = require('../doc/mocks/mock-bodies')
 describe('kinect-fire', () => {
   before(() => co(function * () {
 
@@ -23,33 +23,33 @@ describe('kinect-fire', () => {
   it('Kinect fire', () => co(function * () {
     let { HEAD, HAND_LEFT, SPINE_BASE } = jointTypes
     let fire = new KinectFire({
-      reducers: {
-        leftHandHigherThanHead: (frame) => (frame.joints[ HAND_LEFT ].cameraY > frame.joints[ HEAD ].cameraY),
-        spineBaseLowerThanHead: (frame) => (frame.joints[ SPINE_BASE ].cameraY < frame.joints[ HEAD ].cameraY)
+      bodyReducers: {
+        leftHandHigherThanHead: (body) => (body.joints[ HAND_LEFT ].cameraY > body.joints[ HEAD ].cameraY),
+        spineBaseLowerThanHead: (body) => (body.joints[ SPINE_BASE ].cameraY < body.joints[ HEAD ].cameraY)
       }
     })
-    let reduced = fire.reduce(mockBodyFrame)
+    let reduced = fire.reduceBody(mockBodies)
     assert.deepEqual(reduced, [
       { leftHandHigherThanHead: false, spineBaseLowerThanHead: true }
     ])
 
     yield new Promise((resolve) => {
-      fire.on('frame:detect', (detected) => {
+      fire.on('body:detect', (detected) => {
         assert.ok(detected)
         assert.deepEqual(detected, [
           { leftHandHigherThanHead: false, spineBaseLowerThanHead: true }
         ])
         resolve()
       })
-      fire.handleBody(mockBodyFrame)
+      fire.handleBody(mockBodies)
     })
 
     yield new Promise((resolve) => {
-      fire.on('frame:raw', (raw) => {
+      fire.on('body:raw', (raw) => {
         assert.ok(raw)
         resolve()
       })
-      fire.handleBody(mockBodyFrame)
+      fire.handleBody(mockBodies)
     })
   }))
 })

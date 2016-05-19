@@ -25,7 +25,7 @@ describe('kinect-socket-fire', () => {
           socket.broadcast.emit(event, data)
         })
       }
-      pipe('kinect:frame:detect')
+      pipe('kinect:body:detect')
     })
   }))
 
@@ -40,9 +40,10 @@ describe('kinect-socket-fire', () => {
     })
     yield new Promise((resolve) => {
       let fire = new KinectSocketFire(`http://localhost:${port}`, {
-        reducers: {}
+        bodyReducers: {
+        }
       })
-      receiver.on('kinect:frame:detect', () => {
+      receiver.on('kinect:body:detect', () => {
         fire.stop()
         resolve()
       })
