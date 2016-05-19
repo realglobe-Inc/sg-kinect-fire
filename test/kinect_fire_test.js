@@ -29,16 +29,14 @@ describe('kinect-fire', () => {
       }
     })
     let reduced = fire.reduceBody(mockBodies)
-    assert.deepEqual(reduced, [
-      { leftHandHigherThanHead: false, spineBaseLowerThanHead: true }
-    ])
+    assert.equal(reduced[ 0 ].leftHandHigherThanHead, false)
+    assert.equal(reduced[ 0 ].spineBaseLowerThanHead, true)
 
     yield new Promise((resolve) => {
       fire.on('body:detect', (detected) => {
         assert.ok(detected)
-        assert.deepEqual(detected, [
-          { leftHandHigherThanHead: false, spineBaseLowerThanHead: true }
-        ])
+        assert.equal(detected[ 0 ].leftHandHigherThanHead, false)
+        assert.equal(detected[ 0 ].spineBaseLowerThanHead, true)
         resolve()
       })
       fire.handleBody(mockBodies)
